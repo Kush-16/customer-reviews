@@ -1,1 +1,51 @@
 
+getwd()
+test1 <- read.csv("echo.csv")
+test1
+str(readLines("echo.csv"))
+paste(readLines("echo.csv"), collapse =" ")
+x <- gsub(pattern = "\\W", replacement = " ", paste(readLines("echo.csv"), collapse =" "))
+x
+y <- gsub(pattern = "\\d", replacement = " ", x)
+y
+z <- tolower(y)
+z
+install.packages("tm") #installing the text mining package
+library(tm) #calling it and using its functionalities
+stopwords()
+removeWords(z, stopwords())
+z <- removeWords(z, stopwords())
+z
+gsub(pattern="\\b[A-z]\\b{1}", replacement = " ", z)
+z <- gsub(pattern="\\b[A-z]\\b{1}", replacement = " ", z)
+z
+install.packages("stringr")
+install.packages("wordcloud")
+library(stringr)
+library(wordcloud)
+str_split(text_tablet, pattern = "\\s+")
+z <- str_split(text_tablet, pattern = "\\s+")
+z
+getwd()
+poswords <- scan('positive-words.txt', what = 'character', comment.char = ";")
+poswords
+negwords <- scan('negative-words.txt', what = 'character', comment.char = ";")
+negwords
+class(z)
+y1 <- unlist(z)
+y1
+class(y1)
+
+match(y1, poswords)
+match(y1, negwords)
+
+!is.na(match(y1, poswords))
+sum(!is.na(match(y1, poswords)))
+sum(!is.na(match(y1, negwords)))          
+score <- sum(!is.na(match(y1, poswords))) - sum(!is.na(match(y1, negwords)))
+score
+mean(score)
+sd(score)
+#wordcloud(y1)
+#wordcloud(y1, min.freq = 1)
+wordcloud(y1, min.freq = 1, random.order = FALSE, scale = c(4,0.2), colors = rainbow(3))
