@@ -1,36 +1,52 @@
-# History files
-.Rhistory
-.Rapp.history
+getwd()
+test1 <- read.csv("tablet.csv")
+test1
+str(readLines("tablet.csv"))
+paste(readLines("tablet.csv"), collapse =" ")
+x <- gsub(pattern = "\\W", replacement = " ", paste(readLines("tablet.csv"), collapse =" "))
+x
+y <- gsub(pattern = "\\d", replacement = " ", x)
+y
+z <- tolower(y)
+z
+install.packages("tm") #installing the text mining package
+library(tm) #calling it and using its functionalities
+stopwords()
+removeWords(z, stopwords())
+z <- removeWords(z, stopwords())
+z
+gsub(pattern="\\b[A-z]\\b{1}", replacement = " ", z)
+z <- gsub(pattern="\\b[A-z]\\b{1}", replacement = " ", z)
+z
+install.packages("stringr")
+install.packages("wordcloud")
+library(stringr)
+library(wordcloud)
+str_split(text_tablet, pattern = "\\s+")
+z <- str_split(text_tablet, pattern = "\\s+")
+z
+getwd()
+poswords <- scan('positive-words.txt', what = 'character', comment.char = ";")
+poswords
+negwords <- scan('negative-words.txt', what = 'character', comment.char = ";")
+negwords
+class(z)
+y1 <- unlist(z)
+y1
+class(y1)
 
-# Session Data files
-.RData
+match(y1, poswords)
+match(y1, negwords)
 
-# Example code in package build process
-*-Ex.R
+!is.na(match(y1, poswords))
+sum(!is.na(match(y1, poswords)))
+sum(!is.na(match(y1, negwords)))          
+score <- sum(!is.na(match(y1, poswords))) - sum(!is.na(match(y1, negwords)))
+score
+mean(score)
+sd(score)
+#wordcloud(y1)
+#wordcloud(y1, min.freq = 1)
+wordcloud(y1, min.freq = 1, random.order = FALSE, scale = c(4,0.2), colors = rainbow(3))
 
-# Output files from R CMD build
-/*.tar.gz
 
-# Output files from R CMD check
-/*.Rcheck/
-
-# RStudio files
-.Rproj.user/
-
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
-
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
-
-# knitr and R markdown default cache directories
-/*_cache/
-/cache/
-
-# Temporary files created by R markdown
-*.utf8.md
-*.knit.md
-
-# Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
-rsconnect/
