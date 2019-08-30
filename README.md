@@ -1,10 +1,10 @@
 
 getwd()
-test1 <- read.csv("echo.csv")
+test1 <- read.csv("#enter file name.csv")
 test1
-str(readLines("echo.csv"))
-paste(readLines("echo.csv"), collapse =" ")
-x <- gsub(pattern = "\\W", replacement = " ", paste(readLines("echo.csv"), collapse =" "))
+str(readLines(""#enter file name.csv"))
+paste(readLines(""#enter file name.csv"), collapse =" ")
+x <- gsub(pattern = "\\W", replacement = " ", paste(readLines(""#enter file name.csv"), collapse =" "))
 x
 y <- gsub(pattern = "\\d", replacement = " ", x)
 y
